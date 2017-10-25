@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Thanks list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fromwho</th>
+                <th>Towho</th>
+                <th>Reason</th>
+                <th>Datethanks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for thank in thanks %}
+            <tr>
+                <td><a href="{{ path('thanks_show', { 'id': thank.id }) }}">{{ thank.id }}</a></td>
+                <td>{{ thank.fromwho }}</td>
+                <td>{{ thank.towho }}</td>
+                <td>{{ thank.reason }}</td>
+                <td>{% if thank.datethanks %}{{ thank.datethanks|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('thanks_show', { 'id': thank.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('thanks_edit', { 'id': thank.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('thanks_new') }}">Create a new thank</a>
+        </li>
+    </ul>
+{% endblock %}

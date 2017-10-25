@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Thank</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ thank.id }}</td>
+            </tr>
+            <tr>
+                <th>Fromwho</th>
+                <td>{{ thank.fromwho }}</td>
+            </tr>
+            <tr>
+                <th>Towho</th>
+                <td>{{ thank.towho }}</td>
+            </tr>
+            <tr>
+                <th>Reason</th>
+                <td>{{ thank.reason }}</td>
+            </tr>
+            <tr>
+                <th>Datethanks</th>
+                <td>{% if thank.datethanks %}{{ thank.datethanks|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('thanks_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('thanks_edit', { 'id': thank.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
